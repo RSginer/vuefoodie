@@ -1,43 +1,17 @@
 <script setup lang="ts">
+import MainLayout from './components/MainLayout.vue';
 
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-  </header>
-
-  <main>
-    <h1>Hello</h1>
-  </main>
+  <MainLayout>
+    <h1>Welcome to OpenFoodFacts</h1>
+    <p>This is a simple application to manage food products.</p>
+    <p>Powered by Vue 3, Vite, TypeScript, SCSS, and Pinia.</p>
+    <p>OpenFoodFacts is a collaborative project to create a free database of food products from around the world.</p>
+    <p>Join us and contribute to the project!</p>
+    <p>Check out the <a href="https://world.openfoodfacts.org/">OpenFoodFacts website</a> for more information.</p>
+  </MainLayout>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+<style scoped></style>
