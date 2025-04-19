@@ -1,31 +1,21 @@
 <style lang="css" scoped>
-.footer {
+.main {
+    @apply flex flex-col justify-center items-center;
+}
+.section {
     @apply container mx-auto flex flex-col justify-between items-center;
 }
 
-.logos {
-    @apply flex items-center justify-center;
-}
 </style>
 <template>
-    <header>
-        <img alt="OpenFoodFacts logo" class="logo" src="../assets/openfoodfacts-horizontal-logo.svg" width="325" height="125" />
+    <header v-if="$slots.header" class="header">
+        <slot name="header"></slot>
     </header>
-    <main>
+    <main v-if="$slots.default" class="section main">
         <slot></slot>
     </main>
-    <footer class="footer">
-        <div class="logos">
-            <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer">
-                <img alt="Vue logo" src="../assets/logo.svg" width="55" height="55" />
-            </a>
-            <span class="text-3xl mr-2">+</span>
-            <a href="https://openfoodfacts.org/" target="_blank" rel="noopener noreferrer">
-                <img alt="OpenFoodFacts logo" src="../assets/openfoodfacts-horizontal-logo.svg" width="325" height="125" />
-            </a>           
-        </div>
-        <p class="text-xs text-gray-600 mt-4">OpenFoodFacts Explorer Powered by Vue.js</p>
-        <p class="text-xs text-gray-600">Made with ❤️ by RSginer</p>
+    <footer class="section" v-if="$slots.footer">
+        <slot name="footer"></slot>
     </footer>
 </template>
 <script setup lang="ts">

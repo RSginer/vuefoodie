@@ -1,17 +1,24 @@
-<script setup lang="ts">
-import MainLayout from './components/MainLayout.vue';
+<style scoped>
 
-</script>
+</style>
 
 <template>
   <MainLayout>
-    <h1>Welcome to OpenFoodFacts</h1>
-    <p>This is a simple application to manage food products.</p>
-    <p>Powered by Vue 3, Vite, TypeScript, SCSS, and Pinia.</p>
-    <p>OpenFoodFacts is a collaborative project to create a free database of food products from around the world.</p>
-    <p>Join us and contribute to the project!</p>
-    <p>Check out the <a href="https://world.openfoodfacts.org/">OpenFoodFacts website</a> for more information.</p>
+    <template #header>
+      <img alt="OpenFoodFacts logo" class="logo" src="./assets/openfoodfacts-horizontal-logo.svg" width="325" height="125" />
+    </template>
+    <template #default>
+      <h1 class="text-3xl font-bold text-center mt-4">Welcome to OpenFoodFacts Explorer</h1>
+      <p class="text-center mt-2">Explore the world of food products and their nutritional information.</p>
+      </template> 
+      <template #footer>
+        <PageFooter />
+      </template>
   </MainLayout>
 </template>
 
-<style scoped></style>
+
+<script setup lang="ts">
+import MainLayout from './components/MainLayout.vue';
+import PageFooter from './components/PageFooter.vue';
+</script>
