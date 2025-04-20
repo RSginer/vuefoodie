@@ -7,7 +7,7 @@ interface Route {
     component: Component;
 }
 
-interface RouterOptions {
+export interface RouterOptions {
     routes: Route[];
 }
 
