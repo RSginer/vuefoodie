@@ -1,9 +1,10 @@
 <style scoped></style>
 <template>
-    <header v-if="$slots.header" class="container mx-auto">
+    <header v-if="$slots.header" class="container mx-auto mb-2">
         <slot name="header"></slot>
     </header>
-    <main v-if="$slots.default" class="flex flex-col h-screen justify-start mx-auto px-8 container bg-base-100">
+    <main v-if="$slots.default"
+        class="flex flex-col h-screen justify-start container mx-auto gap-4 px-4 xl:max-w-6xl bg-base-100 my-4">
         <slot></slot>
     </main>
     <footer class="pt-12 bg-secondary pt-12" v-if="$slots.footer">
