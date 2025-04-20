@@ -1,10 +1,6 @@
-<style scoped>
-.logos {
-    @apply flex items-center justify-center;
-}
-</style>
+<style scoped></style>
 <template>
-    <div class="logos">
+    <div class="flex items-center justify-center">
         <a href="https://openfoodfacts.org/" target="_blank" rel="noopener noreferrer">
             <img alt="OpenFoodFacts logo" src="../assets/openfoodfacts-horizontal-logo.svg" width="325" height="125" />
         </a>
