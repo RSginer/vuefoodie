@@ -118,8 +118,8 @@ export function createRouter(options: RouterOptions) {
         
         install(app: App) {
             this.app = app;
-            app.config.globalProperties.$router = this;
             app.provide(RouterKey, this);
+            app.config.globalProperties.$vuefoodieRouter = this;
 
             // Initialize route params on first load
             this.updateRouteParams();
@@ -163,6 +163,14 @@ export function createRouter(options: RouterOptions) {
     return router;
 }
 
+export function useRouter() {
+    const router = inject(RouterKey) as ReturnType<typeof createRouter>;
+    if (!router) {
+        throw new Error("useRouter() must be used within a component that is a child of RouterView");
+    }
+    
+    return router;
+}
 // Add a composable function to access route parameters in Vue components
 export function useRoute() {
     const router = inject(RouterKey) as ReturnType<typeof createRouter>;
