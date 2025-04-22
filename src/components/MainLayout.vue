@@ -4,7 +4,7 @@
         <slot name="header"></slot>
     </header>
     <main v-if="$slots.default"
-        class="flex flex-col h-screen justify-start container mx-auto gap-4 px-4 xl:max-w-6xl bg-base-100 my-4">
+        class="flex flex-col min-h-screen justify-start container mx-auto gap-4 px-4 xl:max-w-6xl bg-base-100 my-4">
         <slot></slot>
     </main>
     <footer class="bg-secondary" v-if="$slots.footer">

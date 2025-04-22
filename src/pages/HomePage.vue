@@ -2,8 +2,8 @@
     <WelcomeMessageCard />
     <FancyQuestionList :apiUrl="apiUrl">
         <template #item="{ barcode, source_image_url }">
-            <div class="item">
-                <img :src="source_image_url" :alt="barcode + ' image'"/>
+            <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
+                <img class="w-20" :src="source_image_url" :alt="barcode + ' image'"/>
                 <p>{{ barcode }}</p>
             </div>
         </template>    

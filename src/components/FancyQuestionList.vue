@@ -1,27 +1,18 @@
 <template>
-  <ul>
+  <ul class="mt-4 flex flex-col gap-2">
     <li v-if="!items.length">
       Loading...
     </li>
-    <li v-for="item in items" v-bind:key="item.barcode">
+    <li v-for="item in items" v-bind:key="item.barcode" class="flex flex-row gap-2">
       <slot name="item" v-bind="item" />
     </li>
   </ul>
 </template>
 
 <script setup lang="ts">
+import type { Question } from '@/types/Question';
 import { ref, watch } from 'vue';
 
-type Question = {
-  barcode: string;
-  insight_id: string; 
-  insight_type: string;
-  question: string;
-  server_type: string;
-  source_image_url: string;
-  type: string;
-  value: string;
-}
 
 type QuestionResponse = {
   questions: Question[];
