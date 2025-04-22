@@ -9,9 +9,6 @@
       <RouterView />
     </template>
     <template #footer>
-      <PageFooter />
-    </template>
-    <template #credits>
       <PageCredits />
     </template>
   </MainLayout>
@@ -21,6 +18,5 @@
 <script setup lang="ts">
 import MainLayout from './components/MainLayout.vue';
 import PageCredits from './components/PageCredits.vue';
-import PageFooter from './components/PageFooter.vue';
 import PageHeader from './components/PageHeader.vue';
 </script>

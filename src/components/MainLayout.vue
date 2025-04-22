@@ -7,15 +7,12 @@
         class="flex flex-col h-screen justify-start container mx-auto gap-4 px-4 xl:max-w-6xl bg-base-100 my-4">
         <slot></slot>
     </main>
-    <footer class="pt-12 bg-secondary pt-12" v-if="$slots.footer">
-        <div class="container mx-auto text-secondary-content text-center flex flex-col gap-2">
+    <footer class="bg-secondary" v-if="$slots.footer">
+        <div
+            class="mt-8 flex justify-center w-100% py-2 text-secondary-content backdrop-brightness-70">
             <slot name="footer"></slot>
         </div>
-        <div v-if="$slots.credits"
-            class="mt-8 flex justify-center w-100% py-2 text-secondary-content backdrop-brightness-50">
-            <slot name="credits"></slot>
-        </div>
-        </footer>
+    </footer>
 
 </template>
 <script setup lang="ts">
