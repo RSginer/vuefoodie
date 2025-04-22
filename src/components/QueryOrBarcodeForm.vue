@@ -5,12 +5,10 @@
     class="btn btn-square btn-secondary join-item px-10">Go</button>
 </template>
 <script lang="ts" setup>
-import SearchQueryKey from '@/types/SearchQueryKey';
-import { inject, type Ref } from 'vue';
+import useStore from "@/store";
+import { storeToRefs } from "pinia";
 
-const searchQuery = inject<Ref<string>>(SearchQueryKey);
+const store = useStore();
 
-if (!searchQuery) {
-  throw new Error('searchQuery is not provided');
-}
+const { searchQuery } = storeToRefs(store);
 </script>
