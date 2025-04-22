@@ -1,5 +1,5 @@
 <template>
-  <input type="text" v-model="searchQuery" class="input join-item input-bordered xl:w-full" placeholder="Query or barcode">
+  <input type="text" v-bind:value="searchQuery" class="input join-item input-bordered xl:w-full" placeholder="Query or barcode">
   <button
     :disabled="searchQuery.length === 0"
     class="btn btn-square btn-secondary join-item px-10">Go</button>
