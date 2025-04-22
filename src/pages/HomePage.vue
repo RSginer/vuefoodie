@@ -10,7 +10,7 @@
         <template #skeleton>
             <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
                 <div class="skeleton w-20 h-20"></div>
-                <div class="skeleton w-full h-6"></div>
+                <div class="skeleton w-35 h-4 mt-1"></div>
             </div>
         </template>
     </FancyQuestionList>
