@@ -15,7 +15,8 @@
             class="mt-8 flex justify-center w-100% py-2 text-secondary-content backdrop-brightness-50">
             <slot name="credits"></slot>
         </div>
-    </footer>
+        </footer>
+
 </template>
 <script setup lang="ts">
 </script>

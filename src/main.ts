@@ -12,4 +12,7 @@ const app = createApp(App)
 app.use(createPinia())
     .use(createRouter(routerOptions))
 
+app.config.globalProperties.$appName = 'VueFoodie';
+app.config.globalProperties.$appVersion = '1.0.0';
+
 app.mount('#app')
