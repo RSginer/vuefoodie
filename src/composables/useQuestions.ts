@@ -1,46 +1,30 @@
-import type { Question } from '@/types/Question';
-import { ref, toValue, watchEffect, type MaybeRefOrGetter } from 'vue';
+import { toValue, watchEffect, type MaybeRefOrGetter } from 'vue';
 
-type QuestionResponse = {
-  questions: Question[];
-}
+import { useQuestionsStore } from '@/store/questionsStore';
+import { storeToRefs } from 'pinia';
 
 const useQuestions = (apiUrl: MaybeRefOrGetter<string>, count: MaybeRefOrGetter<number>) => {
-  const error = ref<Error | null>(null);
-  const items = ref<Question[] | undefined>(undefined);
-
-watchEffect(() => {
-  if (apiUrl) {
-      const url = new URL(toValue(apiUrl));
-
-      if (count) {
-        url.searchParams.append('count', toValue(count).toString());
-      }
+  const questionsStore = useQuestionsStore();
+  const questionsStoreRefs = storeToRefs(questionsStore);
+  
+  watchEffect(() => {
+    if (apiUrl) {
+        const url = new URL(toValue(apiUrl));
+        
+        if (count) {
+          url.searchParams.append('count', toValue(count).toString());
+        }
+        
+        questionsStore.fetchData(url);
+        
       
-      fetch(url.toString())
-        .then((response) => {
-          if (!response.ok) {
-            error.value = new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then((data: QuestionResponse) => {
-          items.value = data.questions;
-        })
-        .catch((err) => {
-          items.value = undefined;
-          error.value = new Error(err);
+    }
+  });
 
-          // Handle the error
-          console.error('There has been a problem with your fetch operation:', err);
-        });
+  return {
+    error: questionsStoreRefs.error,
+    items: questionsStoreRefs.items,
   }
-});
-
-return {
-  error,
-  items,
-}
 
 }
 

@@ -5,10 +5,8 @@
     class="btn btn-square btn-secondary join-item px-10">Go</button>
 </template>
 <script lang="ts" setup>
-import useStore from "@/store";
-import { storeToRefs } from "pinia";
+import { ref } from 'vue';
 
-const store = useStore();
+const searchQuery = ref<string>('');
 
-const { searchQuery } = storeToRefs(store);
 </script>
