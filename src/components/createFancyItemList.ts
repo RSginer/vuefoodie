@@ -1,7 +1,16 @@
 import useItems from '@/composables/useItems';
 import { defineComponent, h, type PropType, type Slot, type VNode } from "vue";
 
-export default <T> () => defineComponent({
+interface FancyItemListProps<T> {
+  apiUrl: string;
+  limit: number;
+  limitKey?: string;
+  dataKey?: string;
+  itemKey?: string | ((item: T) => string | number);
+  storeKey?: string;
+}
+
+export default <T> () => defineComponent<FancyItemListProps<T>>({
     name: "FancyItemList",
     props: {
       apiUrl: {

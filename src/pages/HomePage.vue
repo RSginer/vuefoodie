@@ -32,12 +32,12 @@
     </QuestionList>
 </template>
 <script setup lang="ts">
-import factoryFancyItemList from "@/components/createFancyItemList";
+import createFancyItemList from "@/components/createFancyItemList";
 import WelcomeMessageCard from "@/components/WelcomeMessageCard.vue";
 import type { Question } from "@/types/Question";
 import { ref } from "vue";
 
-const QuestionList = factoryFancyItemList<Question>();
+const QuestionList = createFancyItemList<Question>();
 
 const apiUrl = ref(import.meta.env.VITE_QUESTIONS_API_URL);
 </script>

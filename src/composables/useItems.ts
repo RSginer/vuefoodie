@@ -28,7 +28,7 @@ const useItems = <T>(
         url.searchParams.append(limitKey || 'limit', toValue(limit).toString());
       }
       
-      itemsStore.fetchData<T>(url, dataKey);
+      itemsStore.fetchData(url, dataKey);
     }
   });
 
