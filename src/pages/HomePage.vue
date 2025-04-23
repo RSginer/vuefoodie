@@ -20,5 +20,5 @@ import FancyQuestionList from "@/components/FancyQuestionList.vue";
 import WelcomeMessageCard from "@/components/WelcomeMessageCard.vue";
 import { ref } from "vue";
 
-const apiUrl = ref("https://robotoff.openfoodfacts.org/api/v1/questions");
+const apiUrl = ref(import.meta.env.VITE_QUESTIONS_API_URL);
 </script>
