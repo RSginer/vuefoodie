@@ -68,7 +68,7 @@ export default <T> () => defineComponent<FancyItemListProps<T>>({
       return () => {
         // Generate list items based on state
         const listItems: VNode[] = [];
-        
+
         // Loading state - show skeletons
         if (!error.value && !items.value) {
           for (let i = 0; i < props.limit; i++) {
