@@ -7,10 +7,10 @@
         limitKey="count" 
         itemKey="barcode" 
         storeKey="QuestionsStore">
-        <template #item="{ item }">
+        <template #item="{ barcode, source_image_url }">
             <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
-                <img class="w-20 h-20" :src="item.source_image_url" :alt="item.barcode + ' image'"/>
-                <p>{{ item.barcode }}</p>
+                <img class="w-20 h-20" :src="source_image_url" :alt="barcode + ' image'"/>
+                <p>{{ barcode }}</p>
             </div>
         </template>
         <template #skeleton>
@@ -32,13 +32,12 @@
     </QuestionList>
 </template>
 <script setup lang="ts">
-import { createFancyItemList } from "@/components/createFancyItemList";
+import factoryFancyItemList from "@/components/createFancyItemList";
 import WelcomeMessageCard from "@/components/WelcomeMessageCard.vue";
-import { type Question } from "@/types/Question";
+import type { Question } from "@/types/Question";
 import { ref } from "vue";
 
-// Create a properly typed QuestionList component
-const QuestionList = createFancyItemList<Question>();
+const QuestionList = factoryFancyItemList<Question>();
 
 const apiUrl = ref(import.meta.env.VITE_QUESTIONS_API_URL);
 </script>

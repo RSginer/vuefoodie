@@ -1,8 +1,7 @@
 import useItems from '@/composables/useItems';
 import { defineComponent, h, type PropType, type Slot, type VNode } from "vue";
 
-export const createFancyItemList = <T>() => {
-  return defineComponent({
+export default <T> () => defineComponent({
     name: "FancyItemList",
     props: {
       apiUrl: {
@@ -35,7 +34,7 @@ export const createFancyItemList = <T>() => {
       skeleton?: Slot; 
       error?: Slot; 
       empty?: Slot; 
-      item?: Slot<{ item: T }>; // Updated to match the slot props pattern
+      item?: Slot<T>; // Updated to match the slot props pattern
     } }) {
       // Function to get unique key for item
       const getItemKey = (item: T): string | number => {
@@ -84,7 +83,7 @@ export const createFancyItemList = <T>() => {
         if (!error.value && items.value && items.value.length > 0 && slots.item) {
           items.value.forEach((item) => {
             listItems.push(
-              h('li', { key: getItemKey(item) }, slots.item ? slots.item({ item }) : undefined)
+              h('li', { key: getItemKey(item) }, slots.item ? slots.item(item) : undefined)
             );
           });
         }
@@ -94,4 +93,3 @@ export const createFancyItemList = <T>() => {
       };
     }
   });
-};
