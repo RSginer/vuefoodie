@@ -6,10 +6,13 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { createRouter } from './router';
 import routerOptions from './router/routerOptions';
+import activeStores from './store/activeStores';
 
 const app = createApp(App)
 
-app.use(createPinia())
+app.use(createPinia().use(({ store }) => {
+    activeStores.set(store.$id, store);
+}))
     .use(createRouter(routerOptions))
 
 app.config.globalProperties.$appName = 'VueFoodie';

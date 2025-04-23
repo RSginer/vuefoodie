@@ -1,4 +1,4 @@
-import { createItemsStore } from '@/store/useItemsStore';
+import useItemsStore from '@/store/useItemsStore';
 import { storeToRefs } from 'pinia';
 import { toValue, watchEffect, type MaybeRefOrGetter, type Ref } from 'vue';
 
@@ -16,8 +16,7 @@ const useItems = <T>(
   storeKey?: string,
   limitKey?: string,
 ) => {
-  // Create a new dynamic store instance each time this composable is used
-  const itemsStore = createItemsStore(storeKey);
+  const itemsStore = useItemsStore(storeKey);
   const storeRefs = storeToRefs(itemsStore);
   
   watchEffect(() => {
