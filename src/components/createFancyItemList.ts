@@ -43,9 +43,9 @@ export default <T> () => defineComponent<FancyItemListProps<T>>({
       skeleton?: Slot; 
       error?: Slot; 
       empty?: Slot; 
-      item?: Slot<T>; // Updated to match the slot props pattern
+      item?: Slot<T>;
     } }) {
-      // Function to get unique key for item
+
       const getItemKey = (item: T): string | number => {
         if (typeof props.itemKey === 'function') {
           return props.itemKey(item);
@@ -56,7 +56,6 @@ export default <T> () => defineComponent<FancyItemListProps<T>>({
           : JSON.stringify(item);
       };
       
-      // Use the composable to fetch items
       const { items, error } = useItems<T>(
         props.apiUrl, 
         props.limit, 
@@ -66,10 +65,8 @@ export default <T> () => defineComponent<FancyItemListProps<T>>({
       );
       
       return () => {
-        // Generate list items based on state
         const listItems: VNode[] = [];
 
-        // Loading state - show skeletons
         if (!error.value && !items.value) {
           for (let i = 0; i < props.limit; i++) {
             if (slots.skeleton) {
@@ -78,17 +75,14 @@ export default <T> () => defineComponent<FancyItemListProps<T>>({
           }
         }
         
-        // Error state
         if (error.value && slots.error) {
           listItems.push(h('li', { key: 'error' }, slots.error()));
         }
         
-        // Empty state
         else if (!error.value && items.value && items.value.length === 0 && slots.empty) {
           listItems.push(h('li', { key: 'empty' }, slots.empty()));
         }
         
-        // Items loaded
         if (!error.value && items.value && items.value.length > 0 && slots.item) {
           items.value.forEach((item) => {
             listItems.push(
@@ -97,7 +91,6 @@ export default <T> () => defineComponent<FancyItemListProps<T>>({
           });
         }
         
-        // Return the unordered list with generated items
         return h('ul', { class: 'mt-4 flex flex-col gap-2' }, listItems);
       };
     }
