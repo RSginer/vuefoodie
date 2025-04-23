@@ -12,26 +12,50 @@
       <slot name="empty" />
     </template>
     <template v-if="!error && items && items.length > 0">
-      <li v-for="item in items" v-bind:key="item.barcode" class="flex flex-row gap-2">
-        <slot name="item" v-bind="item"></slot>
+      <li v-for="item in items" v-bind:key="getItemKey(item)">
+        <slot name="item" v-bind:item="item"></slot>
       </li>
     </template>
   </ul>
 </template>
 
-<script setup lang="ts">
-import useQuestions from '@/composables/useQuestions';
+<script setup lang="ts" generic="T extends Record<string, unknown>">
+import { useItems } from '@/composables/useItems';
 
-const {apiUrl, count} = defineProps({
-  apiUrl: {
-    type: String,
-    required: true,
-  },
-  count: {
-    type: Number,
-    default: 5,
-  },
+// Usando genéricos en el componente
+interface Props {
+  apiUrl: string;
+  count?: number;
+  dataKey?: string;
+  itemKey?: string | ((item: T) => string | number);
+  storeKey?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  count: 5,
+  dataKey: 'questions',
+  itemKey: 'barcode',
 });
 
-const { items, error } = useQuestions(apiUrl, count);
+// Función para obtener la clave única del item
+const getItemKey = (item: T): string | number => {
+  if (typeof props.itemKey === 'function') {
+    return props.itemKey(item);
+  }
+
+  return typeof props.itemKey === 'string' && props.itemKey in item 
+    ? String(item[props.itemKey as keyof T]) 
+    : JSON.stringify(item);
+};
+
+const { items, error } = useItems<T>(props.apiUrl, props.count, props.dataKey, props.storeKey);
+
+// Definir explícitamente los slots para mejor inferencia de tipos
+defineSlots<{
+  item(props: { item: T }): void;
+  skeleton(): void;
+  empty(): void;
+  error(): void;
+}>();
+
 </script>
