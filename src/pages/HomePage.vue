@@ -13,6 +13,16 @@
                 <div class="skeleton w-35 h-4 mt-1"></div>
             </div>
         </template>
+        <template #empty>
+            <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
+                <p class="text-center">No questions available</p>
+            </div>
+        </template>
+        <template #error>
+            <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
+                <p class="text-center">Error loading questions</p>
+            </div>
+        </template>
     </FancyQuestionList>
 </template>
 <script setup lang="ts">
@@ -21,4 +31,5 @@ import WelcomeMessageCard from "@/components/WelcomeMessageCard.vue";
 import { ref } from "vue";
 
 const apiUrl = ref(import.meta.env.VITE_QUESTIONS_API_URL);
+
 </script>
