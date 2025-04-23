@@ -1,7 +1,7 @@
 import useItems from '@/composables/useItems';
 import { defineComponent, h, type PropType, type Slot, type VNode } from "vue";
 
-export const createFancyItemList = <T extends Record<string, unknown>>() => {
+export const createFancyItemList = <T>() => {
   return defineComponent({
     name: "FancyItemList",
     props: {
@@ -43,7 +43,7 @@ export const createFancyItemList = <T extends Record<string, unknown>>() => {
           return props.itemKey(item);
         }
         
-        return typeof props.itemKey === 'string' && props.itemKey in item 
+        return typeof props.itemKey === 'string' && props.itemKey in (item as object)
           ? String(item[props.itemKey as keyof T]) 
           : JSON.stringify(item);
       };
