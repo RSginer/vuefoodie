@@ -19,7 +19,7 @@
                         </div>
                         <div  class="flex flex-col">
                             <div class="text-xs"><span class="font-semibold">EAN:</span>{{ barcode }}</div>
-                            <div v-if="loading" class="skeleton w-35 h-4 mt-1.5"></div>
+                            <div v-if="loading" class="skeleton w-40 h-5 mt-1.5"></div>
                             <h3 v-else class="text-lg font-semibold">{{ info.product_name || info.product_name_en  }}</h3>
                             <div v-if="loading" class="skeleton w-15 h-4 mt-2"></div>
                             <p v-else class="text-sm text-gray-500">{{ info.brands }}</p>
@@ -33,7 +33,7 @@
                 <div class="skeleton w-30 h-30"></div>
                 <div class="flex flex-col">
                     <div class="skeleton w-30 h-3"></div>
-                    <div class="skeleton w-35 h-4 mt-2.5"></div>
+                    <div class="skeleton w-40 h-5 mt-2.5"></div>
                     <div class="skeleton w-15 h-4 mt-2"></div>
                     </div>
             </div>
