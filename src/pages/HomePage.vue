@@ -1,13 +1,13 @@
 <template>
     <WelcomeMessageCard />
-    <QuestionList 
+    <QuestionList
         :apiUrl="apiUrl" 
         :limit="5" 
         dataKey="questions" 
         limitKey="count" 
         itemKey="barcode" 
         storeKey="QuestionsStore">
-        <template #item="{ barcode, source_image_url }">
+        <template #item="{ barcode, source_image_url }: Question">
             <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
                 <img class="w-20 h-20" :src="source_image_url" :alt="barcode + ' image'"/>
                 <p>{{ barcode }}</p>
