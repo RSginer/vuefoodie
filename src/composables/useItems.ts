@@ -1,6 +1,6 @@
 import { createItemsStore } from '@/store/useItemsStore';
 import { storeToRefs } from 'pinia';
-import { toValue, watchEffect, type MaybeRefOrGetter } from 'vue';
+import { toValue, watchEffect, type MaybeRefOrGetter, type Ref } from 'vue';
 
 /**
  * Generic composable for fetching data from an API
@@ -34,7 +34,7 @@ const useItems = <T>(
 
   return {
     error: storeRefs.error,
-    items: storeRefs.items as MaybeRefOrGetter<T[] | undefined>,
+    items: storeRefs.items as Ref<T[] | undefined>,
   }
 }
 
