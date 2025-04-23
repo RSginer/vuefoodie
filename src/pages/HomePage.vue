@@ -9,19 +9,20 @@
         storeKey="QuestionsStore">
         <template #item="{ barcode, source_image_url }: Question">
             <FancyItemInfo :itemKey="barcode">
-                <template #info="info">
+                <template #info="{ loading, data: info }">
                     <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
                         <div class="flex flex-col justify-center items-center">
-                            <img :src="source_image_url" alt="Question Image" class="w-30 h-30 rounded-lg" />
+                            <div 
+                            :style="`background-image: url(${source_image_url})`" 
+                            alt="Question Image" 
+                            class="w-30 h-30 rounded-lg bg-center bg-cover bg-no-repeat" />
                         </div>
-                        <div v-if="info.loading" class="flex flex-col">
-                            <div class="text-xs">{{ barcode }}</div>
-                            <div class="skeleton w-30 h-4 mt-1.5"></div>
-                            <div class="skeleton w-45 h-10 mt-4"></div>
-                        </div>
-                        <div v-else class="flex flex-col">
-                            <h3 class="text-lg font-semibold">{{ info.title }}</h3>
-                            <p class="text-sm text-gray-500">{{ info.description }}</p>
+                        <div  class="flex flex-col">
+                            <div class="text-xs"><span class="font-semibold">EAN:</span>{{ barcode }}</div>
+                            <div v-if="loading" class="skeleton w-35 h-4 mt-1.5"></div>
+                            <h3 v-else class="text-lg font-semibold">{{ info.product_name || info.product_name_en  }}</h3>
+                            <div v-if="loading" class="skeleton w-15 h-4 mt-2"></div>
+                            <p v-else class="text-sm text-gray-500">{{ info.brands }}</p>
                         </div>
                     </div>
                 </template>
@@ -30,7 +31,11 @@
         <template #skeleton>
             <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
                 <div class="skeleton w-30 h-30"></div>
-                <div class="skeleton w-25 h-3 mt-1.5"></div>
+                <div class="flex flex-col">
+                    <div class="skeleton w-30 h-3"></div>
+                    <div class="skeleton w-35 h-4 mt-2.5"></div>
+                    <div class="skeleton w-15 h-4 mt-2"></div>
+                    </div>
             </div>
         </template>
         <template #empty>
