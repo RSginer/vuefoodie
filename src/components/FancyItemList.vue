@@ -1,7 +1,7 @@
 <template>
   <ul class="mt-4 flex flex-col gap-2">
     <template v-if="!error && !items">
-      <li v-for="(_, index) in Array.from({ length: count })" :key="index">
+      <li v-for="(_, index) in Array.from({ length: limit })" :key="index">
         <slot name="skeleton" />
       </li>
     </template>
@@ -20,21 +20,22 @@
 </template>
 
 <script setup lang="ts" generic="T extends Record<string, unknown>">
-import { useItems } from '@/composables/useItems';
+import useItems from '@/composables/useItems';
 
 // Usando genéricos en el componente
 interface Props {
   apiUrl: string;
-  count?: number;
+  limit?: number;
+  limitKey?: string;
   dataKey?: string;
   itemKey?: string | ((item: T) => string | number);
   storeKey?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  count: 5,
-  dataKey: 'questions',
-  itemKey: 'barcode',
+  limit: 5,
+  itemKey: 'id',
+  limitKey: 'limit',
 });
 
 // Función para obtener la clave única del item
@@ -48,14 +49,5 @@ const getItemKey = (item: T): string | number => {
     : JSON.stringify(item);
 };
 
-const { items, error } = useItems<T>(props.apiUrl, props.count, props.dataKey, props.storeKey);
-
-// Definir explícitamente los slots para mejor inferencia de tipos
-defineSlots<{
-  item(props: { item: T }): void;
-  skeleton(): void;
-  empty(): void;
-  error(): void;
-}>();
-
+const { items, error } = useItems<T>(props.apiUrl, props.limit, props.dataKey, props.storeKey, props.limitKey);
 </script>

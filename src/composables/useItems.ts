@@ -11,9 +11,10 @@ import { toValue, watchEffect, type MaybeRefOrGetter } from 'vue';
  */
 const useItems = <T>(
   apiUrl: MaybeRefOrGetter<string>, 
-  count: MaybeRefOrGetter<number>,
-  dataKey: string = "questions",
-  storeKey?: string
+  limit: MaybeRefOrGetter<number>,
+  dataKey?: string,
+  storeKey?: string,
+  limitKey?: string,
 ) => {
   // Create a new dynamic store instance each time this composable is used
   const itemsStore = createItemsStore(storeKey);
@@ -23,8 +24,8 @@ const useItems = <T>(
     if (apiUrl) {
       const url = new URL(toValue(apiUrl));
       
-      if (count) {
-        url.searchParams.append('count', toValue(count).toString());
+      if (limit) {
+        url.searchParams.append(limitKey || 'limit', toValue(limit).toString());
       }
       
       itemsStore.fetchData<T>(url, dataKey);
@@ -37,8 +38,5 @@ const useItems = <T>(
   }
 }
 
-// Mantener el nombre original para compatibilidad
-const useQuestions = useItems;
 
-export default useQuestions;
-export { useItems };
+export default useItems;
