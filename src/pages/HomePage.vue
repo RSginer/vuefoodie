@@ -8,8 +8,8 @@
         itemKey="barcode" 
         storeKey="QuestionsStore">
         <template #item="{ barcode, source_image_url }: Question">
-            <FancyItemInfo :itemKey="barcode">
-                <template #info="{ loading, data: info }">
+            <ProductItemInfo :itemKey="barcode">
+                <template #info="{ loading, data }: FancyItemInfoBindedProps<Product>">
                     <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
                         <div class="flex flex-col justify-center items-center">
                             <div 
@@ -20,13 +20,13 @@
                         <div  class="flex flex-col">
                             <div class="text-xs"><span class="font-semibold">EAN:</span>{{ barcode }}</div>
                             <div v-if="loading" class="skeleton w-40 h-5 mt-1.5"></div>
-                            <h3 v-else class="text-lg font-semibold">{{ info.product_name || info.product_name_en  }}</h3>
+                            <h3 v-else class="text-lg font-semibold">{{ data?.product_name || data?.product_name_en  }}</h3>
                             <div v-if="loading" class="skeleton w-15 h-4 mt-2"></div>
-                            <p v-else class="text-sm text-gray-500">{{ info.brands }}</p>
+                            <p v-else class="text-sm text-gray-500">{{ data?.brands }}</p>
                         </div>
                     </div>
                 </template>
-            </FancyItemInfo>
+            </ProductItemInfo>
         </template>
         <template #skeleton>
             <div class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md">
@@ -51,13 +51,16 @@
     </QuestionList>
 </template>
 <script setup lang="ts">
-import FancyItemInfo from "@/components/FancyItemInfo.vue";
+import { createFancyItemInfo, type FancyItemInfoBindedProps } from "@/components/createFancyItemInfo";
 import createFancyItemList from "@/components/createFancyItemList";
 import WelcomeMessageCard from "@/components/WelcomeMessageCard.vue";
+import type { Product } from "@/types/Product";
 import type { Question } from "@/types/Question";
 import { ref } from "vue";
 
+
 const QuestionList = createFancyItemList<Question>();
+const ProductItemInfo = createFancyItemInfo<Product>();
 
 const apiUrl = ref(import.meta.env.VITE_QUESTIONS_API_URL);
 </script>
