@@ -1,5 +1,6 @@
 import pluginVitest from '@vitest/eslint-plugin';
 import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import pluginPlaywright from 'eslint-plugin-playwright';
 import pluginVue from 'eslint-plugin-vue';
 import { globalIgnores } from 'eslint/config';
@@ -27,5 +28,7 @@ export default defineConfigWithVueTs(
   {
     ...pluginPlaywright.configs['flat/recommended'],
     files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
-  }
+  },
+  // Add Prettier configuration to avoid conflicts
+  eslintConfigPrettier
 )
