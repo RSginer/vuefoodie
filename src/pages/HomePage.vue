@@ -1,5 +1,4 @@
 <template>
-  <WelcomeMessageCard />
   <QuestionList
     :apiUrl="apiUrl"
     :limit="5"
@@ -62,7 +61,6 @@ import {
   type FancyItemInfoBindedProps,
 } from '@/components/createFancyItemInfo'
 import createFancyItemList from '@/components/createFancyItemList'
-import WelcomeMessageCard from '@/components/WelcomeMessageCard.vue'
 import type { Product } from '@/types/Product'
 import type { Question } from '@/types/Question'
 import { ref } from 'vue'

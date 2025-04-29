@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import PageHeader from './PageHeader.vue'
-import QueryOrBarcodeForm from './QueryOrBarcodeForm.vue'
 
 // Import h from Vue to use in the mock
 import { h } from 'vue'
@@ -44,11 +43,6 @@ describe('PageHeader', () => {
     const logoLink = wrapper.find('.navbar-start a')
     expect(logoLink.exists()).toBe(true)
     expect(logoLink.attributes('href')).toBe('/')
-  })
-
-  it('includes the QueryOrBarcodeForm component', () => {
-    const queryForm = wrapper.findComponent(QueryOrBarcodeForm)
-    expect(queryForm.exists()).toBe(true)
   })
 
   it('contains a GitHub link in the navbar-end section', () => {

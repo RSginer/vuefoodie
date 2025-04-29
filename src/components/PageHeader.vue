@@ -11,15 +11,6 @@
         />
       </a>
     </div>
-    <div class="navbar-center">
-      <div class="form-control">
-        <div>
-          <div class="join">
-            <QueryOrBarcodeForm />
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="navbar-end gap-2">
       <a
         class="btn btn-outline link"
@@ -31,6 +22,4 @@
     </div>
   </div>
 </template>
-<script setup lang="ts">
-import QueryOrBarcodeForm from './QueryOrBarcodeForm.vue'
-</script>
+<script setup lang="ts"></script>
