@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount, VueWrapper } from '@vue/test-utils'
 import PageFooter from './PageFooter.vue'
 
 describe('PageFooter', () => {
-  let wrapper: ReturnType<typeof mount>
+  let wrapper: VueWrapper<InstanceType<typeof PageFooter>>
 
   beforeEach(() => {
     wrapper = mount(PageFooter)

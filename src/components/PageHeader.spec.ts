@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount, VueWrapper } from '@vue/test-utils'
 import PageHeader from './PageHeader.vue'
 
 // Import h from Vue to use in the mock
@@ -16,7 +16,7 @@ vi.mock('./QueryOrBarcodeForm.vue', () => ({
 }))
 
 describe('PageHeader', () => {
-  let wrapper: ReturnType<typeof mount>
+  let wrapper: VueWrapper<InstanceType<typeof PageHeader>>
 
   beforeEach(() => {
     wrapper = mount(PageHeader, {
