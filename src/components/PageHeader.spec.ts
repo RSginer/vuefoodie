@@ -2,19 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount, VueWrapper } from '@vue/test-utils'
 import PageHeader from './PageHeader.vue'
 
-// Import h from Vue to use in the mock
-import { h } from 'vue'
-
-// Mock the QueryOrBarcodeForm component
-vi.mock('./QueryOrBarcodeForm.vue', () => ({
-  default: {
-    name: 'QueryOrBarcodeForm',
-    render() {
-      return h('div', { class: 'mock-query-form' }, 'Mock Query Form')
-    },
-  },
-}))
-
 describe('PageHeader', () => {
   let wrapper: VueWrapper<InstanceType<typeof PageHeader>>
 

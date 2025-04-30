@@ -63,10 +63,16 @@ import {
 import createFancyItemList from '@/components/createFancyItemList'
 import type { Product } from '@/types/Product'
 import type { Question } from '@/types/Question'
-import { ref } from 'vue'
+import { onErrorCaptured, ref } from 'vue'
 
 const QuestionList = createFancyItemList<Question>()
 const ProductItemInfo = createFancyItemInfo<Product>()
 
 const apiUrl = ref(import.meta.env.VITE_QUESTIONS_API_URL)
+
+onErrorCaptured((error) => {
+  console.error('Error in HomePage:', error)
+
+  return false // Prevent the error from propagating further
+})
 </script>
