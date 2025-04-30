@@ -14,7 +14,18 @@
             <div
               class="flex flex-row gap-2 dark:bg-base-200 w-full rounded-2xl bg-white p-6 shadow-md"
             >
-              Failed to fetch product <b>{{ barcode }}</b>
+              <div class="flex flex-col justify-center items-center">
+                <div
+                  :style="`background-image: url(${source_image_url})`"
+                  alt="Question Image"
+                  class="w-30 h-30 rounded-lg bg-center bg-cover bg-no-repeat"
+                />
+              </div>
+              <div class="flex flex-col">
+                <div class="text-xs"><span class="font-semibold">EAN:</span>{{ barcode }}</div>
+                <h3 class="text-lg font-semibold text-red-500">⚠ Failed to fetch product name</h3>
+                <p class="text-sm text-red-500">⚠ Failed to fetch product brands</p>
+              </div>
             </div>
           </template>
           <ProductItemInfo :itemKey="barcode">
